@@ -35,15 +35,21 @@ module Guard
     end
 
     def run_all
-      UI.debug("XML-linting all files matching #{options[:files]}")
+      UI.info("Linting all XML files matching #{options[:files]}")
       run_on_changes(Dir.glob(options[:files]))
     end
 
     def run_on_changes(paths)
+      UI.info('XmlLint is checking: ' + paths.join(' '))
+      errors = 0
+      files = 0
       paths.each do |path|
-        UI.debug("XML-linting #{path}")
-        lint_pick(path) if File.file?(path)
+        if File.file?(path)
+          files  += 1
+          errors += 1 if lint_pick(path)
+        end
       end
+      UI.info("XmlLint checked #{quant(files, :files)}; #{quant(errors)} had problems")
     end
 
     # Returns this guard's name, in accordance with Guard's plugin API
@@ -60,13 +66,23 @@ module Guard
     private
 
     def lint_pick(path)
-      UI.debug("Picking at #{path}")
       error = @linter.lint(path)
       if error
-        UI.info("XML parser raised error for #{path}:")
-        error.lines.each { |line| UI.info(":: #{line}") }
+        UI.info("XML parser error for #{path}\n" + error)
+        #error.lines.each { |line| UI.info(":: #{line}") }
       end
-      !error
+      !!error
     end
+
+    def quant(num, noun = nil)
+      if noun
+        phrase = noun.to_s
+        phrase.gsub!(/s$/, '') if num == 1
+        "#{num.zero? ? 'no' : num} #{phrase}"
+      else
+        num.zero? ? 'none' : num.to_s
+      end
+    end
+
   end
 end
