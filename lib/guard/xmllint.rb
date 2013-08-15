@@ -31,6 +31,7 @@ module Guard
       @options = {
         files: '**/*.xml'
       }.update(options)
+      @linter = Linter.new
     end
 
     def run_all
@@ -59,7 +60,13 @@ module Guard
     private
 
     def lint_pick(path)
-      UI.debug("Picking at #{path} (well, I would be!)")
+      UI.debug("Picking at #{path}")
+      error = @linter.lint(path)
+      if error
+        UI.info("XML parser raised error for #{path}:")
+        error.lines.each { |line| UI.info(":: #{line}") }
+      end
+      !error
     end
   end
 end
