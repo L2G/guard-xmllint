@@ -1,0 +1,3 @@
+guard 'xmllint', :files => '**/*.xml' do
+  watch(/\.xml$/)
+end
