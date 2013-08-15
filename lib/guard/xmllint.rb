@@ -1,11 +1,13 @@
 # encoding: utf-8
 
 require 'guard/guard'
-require 'guard/xmllint/version'
 
 module Guard
 
   class XmlLint < Guard
+
+    require 'guard/xmllint/linter'
+    require 'guard/xmllint/version'
 
     # Create an instance of the XmlLint guard
     #
