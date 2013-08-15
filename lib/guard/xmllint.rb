@@ -4,7 +4,25 @@ require 'guard/guard'
 require 'guard/xmllint/version'
 
 module Guard
+
   class XmlLint < Guard
+
+    # Create an instance of the XmlLint guard
+    #
+    # This implements a Guard plugin to watch for changes in XML files, then
+    # check to make sure they are well-formed and valid (in the XML senses of
+    # those terms).
+    #
+    # Naturally you shouldn't have to call this directly; instead, just add a
+    # "guard 'xmllint'" block to your Guardfile.
+    #
+    # @param [Array] watchers Accepts watchers defined in the Guardfile with the
+    #   "watch" directive
+    # @param [Hash] options Accepts options defined in the Guardfile with "guard
+    #   'xmllint'
+    # @option options [String] :files Path to XML files to check; accepts file
+    #   globs
+    # @api public
 
     def initialize(watchers = [], options = {})
       super
