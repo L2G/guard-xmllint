@@ -1,9 +1,7 @@
 # encoding: utf-8
 
-require 'guard/xmllint'
-
 module Guard
-  class XmlLint
+  class XmlLintVersion
     VERSION = '0.0.1.alpha'
   end
 end
