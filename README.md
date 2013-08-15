@@ -1,6 +1,8 @@
 # Guard::XmlLint
 
-TODO: Write a gem description
+This is a plugin for Ruby [Guard][http://guardgem.org/] that watches for XML
+files and verifies that they are well-formed and valid, in the XML senses of
+those terms.
 
 ## Installation
 
@@ -27,3 +29,9 @@ TODO: Write usage instructions here
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## Acknowledgements
+
+Thanks to Thibaud Guillaume-Gentil and his
+[guard-livereload](http://rubygems.org/gems/guard-livereload) gem, which gave me
+helpful pointers on guard-writing style.
