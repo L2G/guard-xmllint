@@ -1,20 +1,19 @@
 # encoding: utf-8
 
-require 'xmlsimple'
+require 'libxml'
 
 module Guard
   class XmlLint
     class Linter
 
-      def initialize
-        @parser = XmlSimple.new
-      end
-
       def lint(path)
-        @parser.xml_in(path)
+        @parser = LibXML::XML::Reader.file(path)
+        begin
+          loop { break unless @parser.read }
+        rescue LibXML::XML::Error => error
+          return error.message.lines[0]
+        end
         nil
-      rescue REXML::ParseException => exc
-        exc.message.gsub(/.*^\.\.\.$\s/m, '')
       end
 
     end

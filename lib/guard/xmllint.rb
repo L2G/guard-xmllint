@@ -55,6 +55,7 @@ module Guard
       UI.info(
         "XmlLint checked #{quant(files, :files)}; #{quant(errors)} had problems"
         )
+      throw :task_has_failed if errors > 0
     end
 
     # Returns this guard's name, in accordance with Guard's plugin API
