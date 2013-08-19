@@ -1,6 +1,6 @@
 # Guard::XmlLint
 
-This is a plugin for Ruby [Guard][http://guardgem.org/] that watches for XML
+This is a plugin for Ruby [Guard](http://guardgem.org/) that watches for XML
 files and verifies that they are well-formed and valid, in the XML senses of
 those terms.
 
